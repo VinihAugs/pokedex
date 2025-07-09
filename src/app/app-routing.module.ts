@@ -23,6 +23,14 @@ const routes: Routes = [
     path: 'pokebola',
     loadChildren: () => import('./pokebola/pokebola.module').then( m => m.PokebolaPageModule)
   },
+  {
+    path: 'pokedex2',
+    loadChildren: () => import('./pokedex2/pokedex2.module').then( m => m.Pokedex2PageModule)
+  },
+  {
+    path: 'pokedex3',
+    loadChildren: () => import('./pokedex3/pokedex3.module').then( m => m.Pokedex3PageModule)
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Pokédex - Geração 2</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-searchbar [(ngModel)]="query"></ion-searchbar>
+
+  <ion-list>
+    <ion-item *ngFor="let pokemon of pokedex | pokemonName: query " (click)="seeMore(getNationalNumber(pokemon))">
+      <img slot="start" [src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/' + getNationalNumber(pokemon) + '.png'" style="height: 50px;">
+      <ion-label>{{ pokemon.pokemon_species.name }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

@@ -9,6 +9,11 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CameraPreview } from "@awesome-cordova-plugins/camera-preview/ngx";
 import { PipesModule } from "./pipes/pipes.module";
 
+// Apollo Angular imports
+import { APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -18,11 +23,20 @@ import { PipesModule } from "./pipes/pipes.module";
     AppRoutingModule,
     HttpClientModule,
     PipesModule,
+    HttpLinkModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     HttpClient,
-    CameraPreview
+    CameraPreview,
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: (httpLink: HttpLink) => ({
+        cache: new InMemoryCache(),
+        link: httpLink.create({ uri: 'https://beta.pokeapi.co/graphql/v1beta' })
+      }),
+      deps: [HttpLink]
+    }
   ],
   bootstrap: [AppComponent],
 })

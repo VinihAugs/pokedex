@@ -1,13 +1,13 @@
-import { PokeapiService } from './../apis/pokeapi/pokeapi.service';
+import { PokeapiService } from '../apis/pokeapi/pokeapi.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-pokedex',
-  templateUrl: './pokedex.page.html',
-  styleUrls: ['./pokedex.page.scss'],
+  selector: 'app-pokedex2',
+  templateUrl: './pokedex2.page.html',
+  styleUrls: ['./pokedex2.page.scss'],
 })
-export class PokedexPage implements OnInit {
+export class Pokedex2Page implements OnInit {
 
   pokedex: any = [];
   query: string;
@@ -17,7 +17,7 @@ export class PokedexPage implements OnInit {
   }
 
   search() {
-    this.pokeapiService.getPokemonsByGeneration('generation-i').subscribe((result: any) => {
+    this.pokeapiService.getPokemonsByGeneration('generation-ii').subscribe((result: any) => {
       this.pokedex = result.data.species;
     });
   }
